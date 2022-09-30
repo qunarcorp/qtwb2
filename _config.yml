@@ -1,82 +1,145 @@
-# 描述签名
-name:qunarbook
-description:qunar cloud native book
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
 
-# Where things are
-source              : .
-destination         : ./_site
-collections_dir     : .
-plugins_dir         : _plugins # takes an array of strings and loads plugins in that order
-layouts_dir         : _layouts
-data_dir            : _data
-includes_dir        : _includes
-sass:
-  sass_dir: _sass
-collections:
-  posts:
-    output          : true
-    
-gitalk:
-  clientID: "4ebbf6e01b63df3caf79"
-  clientSecret: "7225618168c850f6513d6a49c418f4d30e79c36f"
-  repo: "git@github.com:qunarcorp/qtwb2.git"
-  owner: "zhangcf945"
+# Site
+title: 去哪儿旅行
+subtitle: 基于云原生的研发效能实战
+description: 北京趣拿软件科技有限公司 | 基础架构团队
+keywords: “Qunar基于云原生的研发效能实战”
+author: Qunar基础架构团队
+language: zh-CN
+timezone:
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://localhost:4000/
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+# Directory
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: :lang
+skip_render:
+
+# Writing
+new_post_name: :title.md # File name of new posts
+default_layout: post
+titlecase: false # Transform title into titlecase
+external_link: true # Open external links in new tab
+filename_case: 0
+render_drafts: false
+post_asset_folder: true
+relative_link: false
+future: true
+highlight:
+  enable: false
+  line_number: false
+  auto_detect: false
+  tab_replace:
+
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'tomorrow'
+  line_number: true    # default false
+  custom_css:
+
+search:
+  path: search.xml
+  field: post
+
+permalink_pinyin:
+  enable: true
+  separator: '-' # default: '-'
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+
+Plugins:
+- hexo-generator-baidu-sitemap
+- hexo-generator-sitemap
+
+baidusitemap:
+    path: baidusitemap.xml
+sitemap:
+    path: sitemap.xml
+  
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator:
+  path: ''
+  per_page: 12
+  order_by: -date
+  
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 12
+pagination_dir: page
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: matery
+
+# Deployment
+## Docs: https://hexo.io/docs/deployment.html
+deploy:
+- type: git
+  repository:
+    github: git@github.com:godweiyang/godweiyang.github.io.git
+    coding: git@e.coding.net:godweiyang/godweiyang.git
+  branch: master
+- type: baidu_url_submitter
 
 
-# Handling Reading
-safe                : false
-include             : [".htaccess"]
-exclude             : ["Gemfile", "Gemfile.lock", "node_modules", "vendor/bundle/", "vendor/cache/", "vendor/gems/", "vendor/ruby/"]
-keep_files          : [".git", ".svn"]
-encoding            : "utf-8"
-markdown_ext        : "markdown,mkdown,mkdn,mkd,md"
-strict_front_matter : false
+live2d:
+  enable: false
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  log: false
+  model:
+    use: live2d-widget-model-shizuku
+  display:
+    position: left
+    width: 200
+    height: 400
+  mobile:
+    show: false
+  react:
+    opacity: 0.7
 
-# Filtering Content
-show_drafts         : null
-limit_posts         : 0
-future              : false
-unpublished         : false
-
-# Plugins
-whitelist           : []
-plugins             : []
-
-# Conversion
-markdown            : kramdown
-highlighter         : rouge
-lsi                 : false
-excerpt_separator   : "\n\n"
-incremental         : false
-
-# Serving
-detach              : false
-port                : 4000
-host                : 127.0.0.1
-baseurl             : "/qtwb2" # does not include hostname
-show_dir_listing    : true
-
-# Outputting
-permalink           : date
-paginate_path       : /page:num
-timezone            : null
-
-quiet               : false
-verbose             : false
-defaults            : []
-
-liquid:
-  error_mode        : warn
-  strict_filters    : false
-  strict_variables  : false
-
-# Markdown Processors
-kramdown:
-  auto_ids          : true
-  entity_output     : as_char
-  toc_levels        : [1, 2, 3, 4, 5, 6]
-  smart_quotes      : lsquo,rsquo,ldquo,rdquo
-  input             : GFM
-  hard_wrap         : false
-  footnote_nr       : 1
-  show_warnings     : false
+baidu_url_submit:
+  count: 100
+  host: godweiyang.com
+  token: jp7MKvOw74Yh3F09
+  path: baidu_urls.txt
